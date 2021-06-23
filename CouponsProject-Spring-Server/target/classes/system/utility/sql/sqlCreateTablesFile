@@ -1,0 +1,74 @@
+//****create Companies table****//
+
+CREATE TABLE `coupons_project`.`companies` (
+  `CompanyId` INT NOT NULL AUTO_INCREMENT,
+  `CompanyName` VARCHAR(255) NULL,
+  `Email` VARCHAR(255) NULL,
+  `Password` VARCHAR(15) NULL,
+  PRIMARY KEY (`CompanyId`));
+
+==============================================================
+//****create Customers table****//
+
+CREATE TABLE `coupons_project`.`customers` (
+  `CustomerId` INT NOT NULL AUTO_INCREMENT,
+  `FirstName` VARCHAR(255) NULL,
+  `LastName` VARCHAR(255) NULL,
+  `Email` VARCHAR(255) NULL,
+  `Password` VARCHAR(15) NULL,
+  PRIMARY KEY (`CustomerId`));
+  
+==============================================================
+//****create Categories table****//
+
+CREATE TABLE `coupons_project`.`categories` (
+  `CategoryId` INT NOT NULL AUTO_INCREMENT,
+  `CategoryName` VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY (`CategoryId`));
+
+
+insert into categories values (0, "Food");
+insert into categories values (0, "Electricity");
+insert into categories values (0, "Restaurant");
+insert into categories values (0, "Vacation");
+insert into categories values (0, "Sport");
+
+
+===============================================================
+//****create Coupons table****//
+
+CREATE TABLE `coupons_project`.`coupons` (
+  `CouponId` INT NOT NULL AUTO_INCREMENT,
+  `CompanyId` INT NULL ,
+  `CategoryId` INT NULL,
+  `Title` VARCHAR(255) NULL,
+  `Description` VARCHAR(255) NULL,
+  `StartDate` DATE NULL,
+  `EndDate` DATE NULL,
+  `AmountInStock` INT NULL,
+  `CouponPrice` DOUBLE NULL,
+  `Image` VARCHAR(255) NULL,
+  PRIMARY KEY (`CouponId`),
+  foreign key (CopmanyId) references companies(CompanyId),
+  foreign key (CategoryId) references categories(CategoryId)
+  );
+  
+  
+===============================================================
+//****create Customers_vs_coupuns table****//
+
+CREATE TABLE `coupons_project`.`customers_vs_coupuns` (
+  `CustomerId` INT NOT NULL,
+  `CouponId` INT NOT NULL,
+  PRIMARY KEY (`CustomerId`, `CouponId`),
+  foreign key (CustomerId) references customers(CustomerId),
+  foreign key (CouponId) references coupons(couponId));
+
+
+
+===============================================================
+
+
+
+
+
